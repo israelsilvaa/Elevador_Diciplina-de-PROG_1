@@ -76,9 +76,10 @@ elevador = [1, 0, 0, 0, 0]
 loc_e = int(0)  # localização do elevador exata.
 dc = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
 dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
-pedidos = 0  # Quatidade de vezes que o elevador foi requisitado.
 andar_vazio = 0
-v = "V1.075 Alpha"
+aux = 0
+v = "V2.00 BETA"
+
 # Este bloco localiza onde está o elevador na minha lista "elevador".
 for i in range(5):
     if elevador[i] == 1:
@@ -99,8 +100,7 @@ dest_pessoas = []
 for i in range(5):
     if destinos[i] != 5:
         dest_elevador.append(i)
-        dest_pessoas.append(destinos[i])
-        pedidos += 1
+        dest_elevador.append(destinos[i])
 
 for i in range(1, 101, 3):
     print("Carregando " + str(i) + "%." + 73 * " " + v)
@@ -124,11 +124,15 @@ print("\n" * 40)
 uma_volta = "s"
 while uma_volta == "s":
     for i in range(len(dest_elevador)):
-        # esse 2º while roda um bloco ate o elevador chegar ao destino dele, seja p/ cima ou baixo.
 
-        if loc_e == dest_elevador[i]:
+        #aqui é verificado se tem uma pessoa no andar q o elevador parou depois da 1º volta.
+        if loc_e == dest_elevador[i] and i % 2 == 0:
             pessoas_no_elevador += 1
+            if loc_e == dest_elevador[i] and i % 2 != 0:
+                pessoas_no_elevador -= 1
+            time.sleep(3)
 
+        # esse 2º while roda um bloco ate o elevador chegar ao destino dele, seja p/ cima ou baixo.
         while loc_e != dest_elevador[i]:
 
             # Essse if se trata de quando e elevador presisa subir.
@@ -165,10 +169,12 @@ while uma_volta == "s":
                 # contecendo, e + realista tbm!
                 # ==================================================
 
-                if loc_e == dest_elevador[i]:
+                if loc_e == dest_elevador[i] and i % 2 == 0:
                     time.sleep(3)
                     pessoas_no_elevador += 1
-                    print(" " * 50)
+                if loc_e == dest_elevador[i] and i % 2 != 0:
+                    pessoas_no_elevador -= 1
+                print(" " * 50)
 
             # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
             elif loc_e > dest_elevador[i]:
@@ -189,7 +195,7 @@ while uma_volta == "s":
 
                 # essa variavel "dc" , é p autorizar uma pessoa a subir
                 # Tive q deixar mais rigiroso , POIS AS VEZES DUAS PESSOAS SUBIAM DE UMA VEZ(oq nao pode acontecer)
-                if loc_e == dest_elevador[i]:
+                if loc_e == dest_elevador[i] and i % 2 == 0:
                     dc = 1
 
                 print("destinos do elevador:" + str(dest_elevador))
@@ -205,10 +211,12 @@ while uma_volta == "s":
                 print("Localização atual do elevador:" + str(loc_e))
 
                 # ESSA É A PARTE Q EU FALEI SOBRE SER RIGOROSO NA SUBIDA DE PESSOAS.
-                if loc_e == dest_elevador[i]:
+                if loc_e == dest_elevador[i] and i % 2 == 0:
                     if dc > 0 or loc_e == 1 or dc2 == 1:
                         pessoas_no_elevador += 1
                         time.sleep(3)
+                if loc_e == dest_elevador[i] and i % 2 != 0:
+                    pessoas_no_elevador -= 1
 
     grafico_atual(pessoas_no_elevador)
     if (len(dest_elevador)) == False:
@@ -226,7 +234,6 @@ while uma_volta == "s":
     # Aqui eu já gero os destinos da proxima rodada.
     dest_elevador = []
     for d in range(0, 5):
-        destinos[d] = randint(0, 5)
         while True:
             destinos[d] = randint(0, 5)
             if destinos[d] != d:
@@ -236,10 +243,19 @@ while uma_volta == "s":
     for i in range(5):
         if destinos[i] != 5:
             dest_elevador.append(i)
-            pedidos += 1
+            dest_elevador.append(destinos[i])
 
     if loc_e == 4:
-        dest_elevador = sorted(dest_elevador, reverse=True)
+        #comando abaixo inverte a lista de comandos de paradas
+        dest_elevador = dest_elevador[::-1]
+
+        #Comando abaixo troca de lugar destino das pessoas e destinos do elevador(JA QUE O COMANDO ACIMA OD INVERTEU
+        # ANTãO AGPRA ESTOU AGEITANDO
+        for i in range(len(dest_elevador)):
+            if i % 2 == 0:
+                aux = dest_elevador[i]
+                dest_elevador[i] = dest_elevador[i + 1]
+                dest_elevador[i + 1] = aux
 
 print("Localização final do elevador:" + str(loc_e))
 print("Quantidade de pessoas no elevador:" + str(pessoas_no_elevador))
