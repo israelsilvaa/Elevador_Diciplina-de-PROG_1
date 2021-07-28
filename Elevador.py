@@ -1,19 +1,24 @@
+import emoji
 from random import randint
 import time
 import os                   # usado p/ limpar tela no CMD.
+print("\n", str(" "*15)+"UNIVERSIDADE FERAL DO PARÁ \n "+str(" "*7)+"Instituto de Ciências Exatas e Naturais\n"+str(" "*6)+"Curso Bacharelado em Sistemas De Informação\n"+str(" "*15)+"Programação de Computadores I \n")
+print("Docente: Vinicius Augusto Carvalho de Abreu")
+print("Discentes: Israel Pinheiro da Silva         Mat: 201911140005\n"+str(" "*11)+"Inaldo da Silva Costa"+str(" "*17)+"201911140036 \n"+str(" "*11)+"Erick Andersen Guedes Cardoso         201911140012\n")
+print(emoji.emojize(str(" "*21)+'Python is :thumbs_up:'))
 
 
-x = str(input("Pressione Enter p/ iniciar a apresentação!"))
+x = str(input("      Pressione Enter p/ iniciar a apresentação!"))
 if x != "n" or "N":
     # Variação de grafico para cada andar.
-    def piso4x(n,a=0):
+    def piso4x(n, a=0):
         if n == 0:
             a = 3
         elif n == 1:
             a = 2
         print(
             '##### \n!   ! 4º Andar    \n!' + str(
-                '\U0001F574' * n) +str(" "*a)+'! \n##### '+ str(" "*41) + "Localização do Elevador")
+                '\U0001F574' * n) + str(" "*a)+'! \n##### '+ str(" "*41) + "Localização do Elevador")
 
 
     def piso4():
@@ -21,13 +26,13 @@ if x != "n" or "N":
             '_____ \n!   ! 4º Andar \n!   !\n=====' + str(" "*41) + "Localização do Elevador")
 
 
-    def piso3x(n,p,s=0,s2=0,a=0):
+    def piso3x(n, p, s=0, s2=0, a=0):
         if loc_e == 0:
             s = 1
             s2 = 29
         elif loc_e == 1:
             s = 7
-            s2 =23
+            s2 = 23
         elif loc_e == 2:
             s = 35
             s2 = 16
@@ -41,16 +46,16 @@ if x != "n" or "N":
             a = 3
         elif n == 1:
             a = 2
-        print('#####'+ str(" "*36) +'+===============================+\n!   ! 3º Andar ' + str(" "*26) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!' + str('\U0001F574' * n)+str(" "*a)+'!'+ str(" "*36)+"|"+str(" "*s)+'X'+str(" "*s2)+' |' '\n##### '+str(" "*35)+'+===============================+')
+        print('#####' + str(" "*36) +'+===============================+\n!   ! 3º Andar ' + str(" "*26) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!' + str('\U0001F574' * n)+str(" "*a)+'!'+ str(" "*36)+"|"+str(" "*s)+'X'+str(" "*s2)+' |' '\n##### '+str(" "*35)+'+===============================+')
 
 
-    def piso3(n,p,s=0,s2=0):
+    def piso3(n, p, s=0, s2=0):
         if loc_e == 0:
             s = 1
             s2 = 29
         elif loc_e == 1:
             s = 7
-            s2 =23
+            s2 = 23
         elif loc_e == 2:
             s = 14
             s2 = 16
@@ -64,7 +69,7 @@ if x != "n" or "N":
         print('_____' + str(" "*36) +'+===============================+ \n!   ! 3º Andar' + str(" "*27) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!   ! ' + str(" "*35)+'|'+str(" "*s) +'X'+str(" "*s2)+'| '  '\n====='+str(" "*36)+'+===============================+')
 
 
-    def piso2x(n,a=0):
+    def piso2x(n, a=0):
         if n == 0:
             a = 3
         elif n == 1:
@@ -76,7 +81,7 @@ if x != "n" or "N":
         print('_____\n!   ! 2º Andar\n!   !\n=====')
 
 
-    def piso1x(n,a=0):
+    def piso1x(n, a=0):
         if n == 0:
             a = 3
         elif n == 1:
@@ -88,7 +93,7 @@ if x != "n" or "N":
         print('_____\n!   ! 1º Andar\n!   !\n=====')
 
 
-    def terreox(n,a=0):
+    def terreox(n, a=0):
         if n == 0:
             a = 3
         elif n == 1:
@@ -107,9 +112,9 @@ if x != "n" or "N":
         else:
             piso4()
         if elevador[3] == 1:
-            piso3x(n,p)
+            piso3x(n, p)
         else:
-            piso3(n,p)
+            piso3(n, p)
         if elevador[2] == 1:
             piso2x(n)
         else:
@@ -149,10 +154,14 @@ if x != "n" or "N":
     # Este bloco seleciona os andares onde o elevador foi chamado.
     dest_elevador = []
     dest_pessoas = []
+    subidas = ""
+    descidas = ""
     for i in range(5):
         if destinos[i] != 5:
             dest_elevador.append(i)
+            subidas += str(i) + "º "
             dest_elevador.append(destinos[i])
+            descidas += str(destinos[i]) + "º "
 
     # Bloco de interface.
     for i in range(1, 101, 3):
@@ -167,8 +176,9 @@ if x != "n" or "N":
         time.sleep(5)
     print("\n" * 50)
     # esta função mostra o grafico atual dos andares
-    grafico_atual(pessoas_no_elevador,loc_e)
-    print("Andares solicitados:" + str(dest_elevador))
+    grafico_atual(pessoas_no_elevador, loc_e)
+    print("Andares solicitados:" + str(subidas))
+    print("Andares de descida:" + str(descidas))
     print("Pessoas no elevador:" + str(pessoas_no_elevador))
     time.sleep(3)
     print("\n" * 40)
@@ -211,19 +221,11 @@ if x != "n" or "N":
                             loc_e = ab
 
                     # apos subir ele mostra o grafico dele.
-                    grafico_atual(pessoas_no_elevador,loc_e)
-                    print("destinos do elevador:" + str(dest_elevador))
+                    grafico_atual(pessoas_no_elevador, loc_e)
+                    print("Andares solicitados:" + str(subidas))
+                    print("Andares de descida:" + str(descidas))
                     print("Pessoas no elevador:" + str(pessoas_no_elevador))
                     time.sleep(0.85)
-
-
-                    # ===================================================
-                    print("Localização atual do elevador:" + str(loc_e))
-                    # depois podemos fazer um painel p mostrar a localização p pessoas, utilizando essa variavel.
-                    # aqui so é executado quando o elevador chega no seu destino, entao a pessoa q o chamou pode subir.
-                    # Coloquei um time de maior p pessoa poder subir, e assim fica mis facil de entender oq ta
-                    # contecendo, e + realista tbm!
-                    # ==================================================
 
                     # Aqui se decide se alguem sobre ou desce.
                     # Lembrando q na lista de comando, os indices pares são destinos de subida
@@ -240,7 +242,7 @@ if x != "n" or "N":
                 # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
                 elif loc_e > dest_elevador[i]:
                     os.system("cls")
-                    print(" "* 50)
+                    print(" " * 50)
                     dc2 = 1
                     if elevador[1] == 1:
                         elevador[1] = 0
@@ -260,19 +262,17 @@ if x != "n" or "N":
                         if elevador[cd] == 1:
                             loc_e = cd
 
-                    grafico_atual(pessoas_no_elevador,loc_e)
+                    grafico_atual(pessoas_no_elevador, loc_e)
 
                     # essa variavel "dc" , é p autorizar uma pessoa a subir
                     # Tive q deixar mais rigiroso , POIS AS VEZES DUAS PESSOAS SUBIAM DE UMA VEZ(oq nao pode acontecer)
                     if loc_e == dest_elevador[i] and i % 2 == 0:
                         dc = 1
 
-                    print("destinos do elevador:" + str(dest_elevador))
+                    print("Andares solicitados:" + str(subidas))
+                    print("Andares de descida:" + str(descidas))
                     print("Pessoas no elevador:" + str(pessoas_no_elevador))
                     time.sleep(0.85)
-
-
-                    print("Localização atual do elevador:" + str(loc_e))
 
                     # ESSA É A PARTE Q EU FALEI SOBRE SER RIGOROSO NA SUBIDA DE PESSOAS.
                     if loc_e == dest_elevador[i] and i % 2 == 0:
@@ -286,9 +286,11 @@ if x != "n" or "N":
                 os.system("cls")
                 print(" "*50)
 
-        grafico_atual(pessoas_no_elevador,loc_e)
+        grafico_atual(pessoas_no_elevador, loc_e)
         if (len(dest_elevador)) == False:
             print("Todos os andadres vazios no momento!")
+        print("Andares solicitados:" + str(subidas))
+        print("Andares de descida:" + str(descidas))
         print("Pessoas no elevador:" + str(pessoas_no_elevador))
         uma_volta = str(input("Quer dar mais uma volta(s/n)?"))  # AQUI TERMINA A VOLTA
 
@@ -312,7 +314,9 @@ if x != "n" or "N":
         for i in range(5):
             if destinos[i] != 5:
                 dest_elevador.append(i)
+                subidas += str(i) + "º "
                 dest_elevador.append(destinos[i])
+                descidas += str(destinos[i]) + "º "
 
         if loc_e == 4:
             #comando abaixo inverte a lista de comandos de paradas, p/ que ele nao começe a pegar pessoas do andar mais baixo.
@@ -327,5 +331,6 @@ if x != "n" or "N":
                     dest_elevador[i] = dest_elevador[i + 1]
                     dest_elevador[i + 1] = aux
 
-    print("Localização final do elevador:" + str(loc_e))
+    print("Andares de solicitados:" + str(subidas))
+    print("Andares de descida:" + str(descidas))
     print("Quantidade de pessoas no elevador:" + str(pessoas_no_elevador))
