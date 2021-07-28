@@ -1,14 +1,15 @@
 import emoji
 from random import randint
 import time
-import os                   # usado p/ limpar tela no CMD.
+
+
 print("\n", str(" "*15)+"UNIVERSIDADE FERAL DO PARÁ \n "+str(" "*7)+"Instituto de Ciências Exatas e Naturais\n"+str(" "*6)+"Curso Bacharelado em Sistemas De Informação\n"+str(" "*15)+"Programação de Computadores I \n")
 print("Docente: Vinicius Augusto Carvalho de Abreu")
 print("Discentes: Israel Pinheiro da Silva         Mat: 201911140005\n"+str(" "*11)+"Inaldo da Silva Costa"+str(" "*17)+"201911140036 \n"+str(" "*11)+"Erick Andersen Guedes Cardoso         201911140012\n")
 print(emoji.emojize(str(" "*21)+'Python is :thumbs_up:'))
 
+x = str(input("      Pressione Enter p/ iniciar a apresentação!" + (emoji.emojize(':dvd:'))))
 
-x = str(input("      Pressione Enter p/ iniciar a apresentação!"))
 if x != "n" or "N":
     # Variação de grafico para cada andar.
     def piso4x(n, a=0):
@@ -17,8 +18,7 @@ if x != "n" or "N":
         elif n == 1:
             a = 2
         print(
-            '##### \n!   ! 4º Andar    \n!' + str(
-                '\U0001F574' * n) + str(" "*a)+'! \n##### '+ str(" "*41) + "Localização do Elevador")
+            '##### \n!   ! 4º Andar    \n!' + str(icone * n) + str(" "*a)+'! \n##### '+ str(" "*41) + "Localização do Elevador")
 
 
     def piso4():
@@ -46,7 +46,7 @@ if x != "n" or "N":
             a = 3
         elif n == 1:
             a = 2
-        print('#####' + str(" "*36) +'+===============================+\n!   ! 3º Andar ' + str(" "*26) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!' + str('\U0001F574' * n)+str(" "*a)+'!'+ str(" "*36)+"|"+str(" "*s)+'X'+str(" "*s2)+' |' '\n##### '+str(" "*35)+'+===============================+')
+        print('#####' + str(" "*36) +'+===============================+\n!   ! 3º Andar ' + str(" "*26) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!' + str(icone * n)+str(" "*a)+'!' + str(" "*36)+"|"+str(" "*s)+'X'+str(" "*s2)+' |' '\n##### '+str(" "*35)+'+===============================+')
 
 
     def piso3(n, p, s=0, s2=0):
@@ -74,7 +74,7 @@ if x != "n" or "N":
             a = 3
         elif n == 1:
             a = 2
-        print('#####\n!   ! 2º Andar    \n!'+ str('\U0001F574' * n) +str(" "*a)+ '! \n##### ')
+        print('#####\n!   ! 2º Andar    \n!' + str(icone * n) + str(" "*a) + '! \n##### ')
 
 
     def piso2():
@@ -86,7 +86,7 @@ if x != "n" or "N":
             a = 3
         elif n == 1:
             a = 2
-        print('#####\n!   ! 1º Andar    \n!' + str('\U0001F574' * n) +str(" "*a)+ '! \n##### ')
+        print('#####\n!   ! 1º Andar    \n!' + str(icone * n) + str(" " * a) + '! \n##### ')
 
 
     def piso1():
@@ -98,7 +98,7 @@ if x != "n" or "N":
             a = 3
         elif n == 1:
             a = 2
-        print('#####\n!   ! Terreo    \n!' + str('\U0001F574' * n)+str(" "*a)+'! \n#####                                    ## Express Elevadores ##' + str(v))
+        print('#####\n!   ! Terreo    \n!' + str(icone * n)+str(" "*a)+'! \n#####                                    ## Express Elevadores ##' + str(v))
 
 
     def terreo():
@@ -135,7 +135,8 @@ if x != "n" or "N":
     dc = 0                        # estas são variaveis p/ controlar a entrada de pessoas no elevador
     dc2 = 0                       # estas são variaveis p/ controlar a entrada de pessoas no elevador
     aux = 0                       # usado p/ troca de valores quando a lista é invertida.
-    v = "V2.42 BETA"
+    icone = emoji.emojize(':man:')
+    v = emoji.emojize(' :gear: V2.44 BETA')
 
     # Este bloco localiza onde está o elevador na minha lista "elevador".
     for i in range(5):
@@ -182,7 +183,6 @@ if x != "n" or "N":
     print("Pessoas no elevador:" + str(pessoas_no_elevador))
     time.sleep(3)
     print("\n" * 40)
-    os.system("cls")
 
     # Aqui começa o processo de subir ou descer , para cada destino da lista "des_elevador".
     uma_volta = "s"
@@ -237,11 +237,9 @@ if x != "n" or "N":
                         pessoas_no_elevador -= 1
                         time.sleep(3)
                     print(" " * 50)
-                    os.system("cls")
 
                 # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
                 elif loc_e > dest_elevador[i]:
-                    os.system("cls")
                     print(" " * 50)
                     dc2 = 1
                     if elevador[1] == 1:
@@ -283,7 +281,6 @@ if x != "n" or "N":
                         pessoas_no_elevador -= 1
                         time.sleep(3)
 
-                os.system("cls")
                 print(" "*50)
 
         grafico_atual(pessoas_no_elevador, loc_e)
@@ -299,8 +296,9 @@ if x != "n" or "N":
             dc = 0
             dc2 = 0
             reverso = 0
+            subidas = ""
+            descidas = ""
             print("\n" * 50)
-            os.system("cls")
 
         # Aqui eu já gero os destinos da proxima rodada.
         dest_elevador = []
