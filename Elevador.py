@@ -8,18 +8,18 @@ print("Docente: Vinicius Augusto Carvalho de Abreu")
 print("Discentes: Israel Pinheiro da Silva         Mat: 201911140005\n" + str(" " * 11) + "Inaldo da Silva Costa" + str(
     " " * 17) + "201911140036 \n" + str(" " * 11) + "Erick Andersen Guedes Cardoso         201911140012\n")
 
-x = str(input("      Pressione Enter p/ iniciar a apresentação!"))
+apresentar = str(input("      Pressione Enter p/ iniciar a apresentação!"))
 
-if x != "n" or "N":
+if apresentar != "n" or "N":
 
     # Variação de grafico para cada andar.
-    def piso4x(n, a=0):
-        if n == 0:
+    def piso4x(pessoas, a=0):
+        if pessoas == 0:
             a = 3
-        elif n == 1:
+        elif pessoas == 1:
             a = 2
         print(
-            '##### \n!   ! 4º Andar    \n!' + str(icone * n) + str(" " * a) + '! \n##### ' + str(
+            '##### \n!   ! 4º Andar    \n!' + str(icone * pessoas) + str(" " * a) + '! \n##### ' + str(
                 " " * 41) + "Localização do Elevador")
 
 
@@ -146,7 +146,7 @@ if x != "n" or "N":
     dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
     aux = 0  # usado p/ troca de valores quando a lista é invertida.
     icone = "\U0001F468"
-    versao = '\U00002699' + " V2.46 BETA"
+    versao = '\U00002699' + " V2.47 BETA"
 
     # Este bloco localiza onde está o elevador na minha lista "elevador".
     for i in range(5):
@@ -242,8 +242,13 @@ if x != "n" or "N":
                     if localizacao_elevador == destino_elevador[i] and i % 2 == 0:
                         time.sleep(3)
                         pessoas_no_elevador += 1
+                        print(" "*50)
+                        grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                        time.sleep(3)
                     if localizacao_elevador == destino_elevador[i] and i % 2 != 0:
                         pessoas_no_elevador -= 1
+                        time.sleep(3)
+                        grafico_atual(pessoas_no_elevador, localizacao_elevador)
                         time.sleep(3)
                     print(" " * 50)
 
@@ -286,8 +291,12 @@ if x != "n" or "N":
                         if dc > 0 or localizacao_elevador == 1 or dc2 == 1:
                             pessoas_no_elevador += 1
                             time.sleep(3)
+                            grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                            time.sleep(3)
                     if localizacao_elevador == destino_elevador[i] and i % 2 != 0:
                         pessoas_no_elevador -= 1
+                        time.sleep(3)
+                        grafico_atual(pessoas_no_elevador, localizacao_elevador)
                         time.sleep(3)
 
                 print(" " * 50)
