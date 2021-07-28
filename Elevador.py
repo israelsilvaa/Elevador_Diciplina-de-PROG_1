@@ -31,18 +31,18 @@ def faz_descer():
 
 #Esse são as variações de grafico p/ cada andar(existe duas variações p/ cada).
 #2 funções p/ cada Grafico.
-def piso4x(pessoas, a=0):
+def piso4x(pessoas, cor, a=0):
     if pessoas == 0:
         a = 3
     elif pessoas == 1:
         a = 2
     print(
-        '####### \n!     ! 4º Andar    \n!' + str(icone * pessoas) + str(" " * a) + '  ! \n####### ' + str(
+        '\033[1;'+str(cor)+'####### \n!     ! 4º Andar    \n!' + str(icone * pessoas) + str(" " * a) + '  ! \n#######\033[m' + str(
             " " * 41) + "Localização do Elevador")
 def piso4():
     print(
         '_______ \n!     ! 4º Andar \n!     !\n=======' + str(" " * 41) + "Localização do Elevador")
-def piso3x(pessoas ,localizacao_elevador , s=0, s2=0, a=0):
+def piso3x(pessoas ,localizacao_elevador ,cor , s=0, s2=0, a=0):
     if localizacao_elevador == 0:
         s = 1
         s2 = 29
@@ -64,9 +64,9 @@ def piso3x(pessoas ,localizacao_elevador , s=0, s2=0, a=0):
         a = 2
     elif pessoas == 2:
         a = 0
-    print('#######' + str(" " * 36) + '+===============================+\n!      ! 3º Andar ' + str(
-        " " * 25) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!' + str(icone * pessoas) + str(" " * a) + '  !' + str(
-        " " * 35) + "|" + str(" " * s) + 'X' + str(" " * s2) + ' |' '\n####### ' + str(
+    print('\033[1;'+str(cor)+'#######\033[m' + str(" " * 36) + '+===============================+\n\033[1;'+str(cor)+'!      ! 3º Andar \033[m' + str(
+        " " * 25) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n\033[1;'+str(cor)+'!' + str(icone * pessoas) + str(" " * a) + '  !\033[m' + str(
+        " " * 35) + "|" + str(" " * s) + 'X' + str(" " * s2) + ' |' '\n\033[1;'+str(cor)+'####### \033[m' + str(
         " " * 35) + '+===============================+')
 def piso3(s=0, s2=0):
     if localizacao_elevador == 0:
@@ -88,54 +88,54 @@ def piso3(s=0, s2=0):
     print('_______' + str(" " * 36) + '+===============================+ \n!     ! 3º Andar' + str(
         " " * 27) + '| T  -  1º  -  2º  -  3º  -  4º |' '\n!     ! ' + str(" " * 35) + '|' + str(" " * s) + 'X' + str(
         " " * s2) + '| '  '\n=======' + str(" " * 36) + '+===============================+')
-def piso2x(pessoas, subidaP,decidaP,a=0):
+def piso2x(pessoas, subidaP,decidaP,cor ,a=0):
     if pessoas == 0:
         a = 3
     elif pessoas == 1:
-        a = 2
-    print('#######\n!     ! 2º Andar '+str(" "*32)+"Solicitações: "+str(subidaP)+'\n!' + str(icone * pessoas) + str(" "*a) + '  !'+str(" "*45)+"Destinos: " + str(decidaP) + '\n#######' + str(" "*37) + "pessoas no elevador atualmente: "+str(pessoas))
+        a = 1
+    print('\033[1;'+str(cor)+'#######\n!     ! 2º Andar \033[m'+str(" "*32)+"Solicitações: "+str(subidaP)+'\n\033[1;'+str(cor)+'!' + str(icone * pessoas) + str(" "*a) + '  !\033[m'+str(" "*45)+"Destinos: " + str(decidaP) + '\n\033[1;'+str(cor)+'#######\033[m' + str(" "*37) + "pessoas no elevador atualmente: "+str(pessoas))
 def piso2(pessoas, subidaP, decidaP):
     print('_______\n!     ! 2º Andar'+str(" "*32)+"Solicitações: "+str(subidaP)+'\n!     !'+str(" "*45)+"Destinos: "+str(decidaP)+'\n======='+str(" "*37)+"pessoas no elevador atualmente: "+str(pessoas))
-def piso1x(pessoas,rotina,status,a=0):
+def piso1x(pessoas,rotina,status,cor ,a=0):
     if pessoas == 0:
         a = 3
     elif pessoas == 1:
         a = 2
-    print('#######'+str(" "*32)+'Rotina:'+str(rotina)+' _ Status:'+str(status)+'\n!     ! 1º Andar    \n!' + str(icone * pessoas) + str(" " * a) + '  ! \n####### ')
+    print('\033[1;'+str(cor)+'#######\033[m'+str(" "*32)+'Rotina:'+str(rotina)+' _ Status:'+str(status)+'\n\033[1;'+str(cor)+'!     ! 1º Andar    \n!' + str(icone * pessoas) + str(" " * a) + '  ! \n#######\033[m')
 def piso1(rotina, status):
     print('_______'+str(" "*32)+'Rotina:'+str(rotina)+' _ Status:'+str(status)+'\n!     ! 1º Andar\n!     !\n=======')
-def terreox(pessoas , a=0):
+def terreox(pessoas, cor, a=0):
     if pessoas == 0:
         a = 3
     elif pessoas == 1:
         a = 2
-    print('#######\n!     ! Terreo    \n!' + str(icone * pessoas) + str(
-        " " * a) + '  ! \n#######                                    ## Express Elevadores ##' + str(versao))
+    print('\033[1;'+str(cor)+'#######\n!     ! Terreo    \n!' + str(icone * pessoas) + str(
+        " " * a) + '  ! \n#######\033[m                                    ## Express Elevadores ##' + str(versao))
 def terreo():
     print(
         '_______\n!     ! Terreo    \n!     !\n=======                                    ## Express Elevadores ## ' + str(
             versao))
 
 # essa função monta os graficos andar por andar, e mostra na tela.
-def grafico_atual(pessoas, localizacao_elevador, subidas, descidas, rotina ,status):
+def grafico_atual(pessoas, localizacao_elevador, subidas, descidas, rotina ,status,cor):
     if elevador[4] == 1:
-        piso4x(pessoas)
+        piso4x(pessoas,cor)
     else:
         piso4()
     if elevador[3] == 1:
-        piso3x(pessoas, localizacao_elevador)
+        piso3x(pessoas, localizacao_elevador,cor)
     else:
         piso3(pessoas,localizacao_elevador)
     if elevador[2] == 1:
-        piso2x(pessoas, subidas, descidas)
+        piso2x(pessoas, subidas, descidas,cor)
     else:
         piso2(pessoas, subidas, descidas)
     if elevador[1] == 1:
-        piso1x(pessoas,rotina,status)
+        piso1x(pessoas,rotina,status,cor)
     else:
         piso1(rotina,status)
     if elevador[0] == 1:
-        terreox(pessoas)
+        terreox(pessoas,cor)
     else:
         terreo()
 
@@ -154,10 +154,12 @@ sequencia_2 = [] # pode conter "comando_paradas_subidas" ou "comando_paradas_des
 subidas = "" #armazena TODOS os andares onde as pessoas entram, tanto de subida quando de descida.
 descidas = ""  #armazena TODOS os andares onde as pessoas saem, tanto de subida quando de descida.
 icone = "\U0001F468" # icone q aparece no grafico.
-versao = '\033[1;33m\U00002699' + "V3.0 GOLD\033[m" # icone de engrenagem e nº de versão. :)
+versao = '\033[1;33m\U00002699' + "V3.0 GOLD COLOR\033[m" # icone de engrenagem e nº de versão. :)
 mais_uma_volta = "s"  # usado p/ descidir se o codigo rodará mais uma vez.
 rotina = "\033[1;36mSubida\033[m depois \033[1;31mDescida\033[m"
 status = "\033[1;36m\U00002B06\033[m"
+n_cor = 0
+cor = "34m"
 verif_sequencia1_entrada = []
 verif_sequencia1_saida = []
 verif_sequencia2_entrada = []
@@ -170,10 +172,33 @@ print("\n", str(" " * 15) + "UNIVERSIDADE FERAL DO PARÁ \n " + str(
 print("Docente: Prof. Dr. Vinicius Augusto Carvalho de Abreu")
 print("Discentes: Israel Pinheiro da Silva         Mat: 201911140005\n" + str(" " * 11) + "Inaldo da Silva Costa" + str(
     " " * 17) + "201911140036")
-apresentar = str(input("        \033[4;31mPressione Enter p/ iniciar a apresentação!\033[m"))
+print("1 - Iniciar Apresentação.")
+print("2 - EXTRAS.")
+apresentar = int(input("\033[4;31mOpção(1/2):\033[m"))
 
+if apresentar == 2:
+    op_cor = 0
+    while op_cor != 3:
+        print("\n"*80)
+        print("===Opções de cores para a Cabine do elevador===")
+        print("1 - Vermelho\n2 - Azul\n3 - Lilás\n4 - Amarelo")
+        n_cor = int(input("Número da cor:"))
+        if n_cor == 1:
+            cor = "31m"
+        elif n_cor == 2:
+            cor = "34m"
+        elif n_cor == 3:
+            cor = "35m"
+        elif n_cor == 4:
+            cor = "33m"
+        print('\033[1;' + str(cor) + '_______\n!     ! Terreo    \n!     !\n=======\033[m')
+        print("1 - Escolher outra cor\n3 - Salvar")
+        op_cor = int(input("(1/3):"))
+    print("\n"*80)
+    print("1 - Iniciar Apresentação.\n3 - ENCERRAR.")
+    apresentar = int(input("(1/3)?:"))
 
-if apresentar != "n" or apresentar != "N":
+if apresentar != 3:
     #esse for é um bloco de interface de carregamento(só p/ ficar mais interessante).
     for i in range(1, 101, 3):
         print("Carregando " + str(i) + "%." + 73 * " " + versao)
@@ -226,12 +251,12 @@ if apresentar != "n" or apresentar != "N":
 
     # aqui monstro o elevador a 1º vez antes de se movimenta, e ja aproveito p mostrar tbm os andes q ele vai.
     # e tambem passa informaçoes p interagir na interface.
-    grafico_atual(pessoas_no_elevador,localizacao_elevador, subidas, descidas,rotina,status)
+    grafico_atual(pessoas_no_elevador,localizacao_elevador, subidas, descidas,rotina,status,cor)
     time.sleep(3)
     print("\n" * 40)
 
     #aqui começa a rodada.
-    while mais_uma_volta  == "s":
+    while mais_uma_volta == "s":
 
         #esse IF's antes do for descidem se é melhor pegar 1º a galera q vai subir ou q vai descer.
         #EX: se ele tiver no 3º é melhor ir pegando a galera q quer descer.
@@ -282,7 +307,7 @@ if apresentar != "n" or apresentar != "N":
                             localizacao_elevador = cd
                     #chamando função de garfico atual ele atualiza o elevador na tela.
                     # e tambem passa informaçoes p interagir na interface.
-                    grafico_atual(pessoas_no_elevador,localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador,localizacao_elevador, subidas, descidas, rotina, status,cor)
                     time.sleep(0.85)
                     print("\n" * 40)
 
@@ -295,7 +320,7 @@ if apresentar != "n" or apresentar != "N":
                             localizacao_elevador = cd
                     # chamando função de garfico atual ele atualiza o elevador na tela.
                     #e tambem passa informaçoes p interagir na interface.
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status, cor)
                     time.sleep(0.85)
                     print("\n" * 40)
 
@@ -309,14 +334,14 @@ if apresentar != "n" or apresentar != "N":
                 if sequencia_1[i] in verif_sequencia1_entrada:
                     pessoas_no_elevador += 1
                     verif_sequencia1_entrada.remove(sequencia_1[i])
-                    grafico_atual(pessoas_no_elevador,localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador,localizacao_elevador, subidas, descidas, rotina, status, cor)
                     time.sleep(3)
                     print("\n" * 40)
                 #IF de verificação de saida des pessoas.
                 if sequencia_1[i] in verif_sequencia1_saida:
                     pessoas_no_elevador -= 1
                     verif_sequencia1_saida.remove(sequencia_1[i])
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status,cor)
                     time.sleep(3)
                     print("\n" * 40)
 
@@ -338,7 +363,7 @@ if apresentar != "n" or apresentar != "N":
                     for cd in range(5):
                         if elevador[cd] == 1:
                             localizacao_elevador = cd
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status, cor)
                     time.sleep(0.85)
                     print("\n" * 40)
             #esse ELIF se trata de quando o elevador esta abaixo do destino e precisa subir.
@@ -348,7 +373,7 @@ if apresentar != "n" or apresentar != "N":
                     for cd in range(5):
                         if elevador[cd] == 1:
                             localizacao_elevador = cd
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status, cor)
                     time.sleep(0.85)
                     print("\n" * 40)
 
@@ -357,7 +382,7 @@ if apresentar != "n" or apresentar != "N":
                 if sequencia_2[i] in verif_sequencia2_entrada:
                     pessoas_no_elevador += 1
                     verif_sequencia2_entrada.remove(sequencia_2[i])
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status, cor)
                     time.sleep(3)
                     print("\n" * 40)
 
@@ -365,12 +390,14 @@ if apresentar != "n" or apresentar != "N":
                 if sequencia_2[i] in verif_sequencia2_saida:
                     pessoas_no_elevador -= 1
                     verif_sequencia2_saida.remove(sequencia_2[i])
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status ,cor)
                     time.sleep(3)
+                    print("\n" * 40)
 
 
         #Nesse momento a rodada terminou, todo mundo fou p seus lugares, e o usurio descidira se vai rodar mais uma vez.
-        mais_uma_volta = str(input("quer dar mais muma volta?"))
+        grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status, cor)
+        mais_uma_volta = str(input("quer dar mais muma volta?(s/n)"))
 
         #Aqui é a preparação p a proxima rodada, essa preparação so é feita se for mesmo ter uma proxima(isso otipmiza
         # o codigo, evitando geração de dados q nao seram usados).
@@ -396,7 +423,7 @@ if apresentar != "n" or apresentar != "N":
                 if destinos[i] != 5:
                     subidas += str(i) + "º "
                     descidas += str(destinos[i]) + "º "
-            grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status)
+            grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas, rotina, status, cor)
             time.sleep(3)
             print("\n" * 40)
 
