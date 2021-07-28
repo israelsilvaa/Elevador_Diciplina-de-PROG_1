@@ -4,7 +4,7 @@ import time
 print("\n", str(" " * 15) + "UNIVERSIDADE FERAL DO PARÁ \n " + str(
     " " * 7) + "Instituto de Ciências Exatas e Naturais\n" + str(
     " " * 6) + "Curso Bacharelado em Sistemas De Informação\n" + str(" " * 15) + "Programação de Computadores I \n")
-print("Docente: Vinicius Augusto Carvalho de Abreu")
+print("Docente: Prof. Dr. Vinicius Augusto Carvalho de Abreu")
 print("Discentes: Israel Pinheiro da Silva         Mat: 201911140005\n" + str(" " * 11) + "Inaldo da Silva Costa" + str(
     " " * 17) + "201911140036 \n" + str(" " * 11) + "Erick Andersen Guedes Cardoso         201911140012\n")
 
@@ -146,7 +146,7 @@ if apresentar != "n" or "N":
     dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
     aux = 0  # usado p/ troca de valores quando a lista é invertida.
     icone = "\U0001F468"
-    versao = '\U00002699' + " V2.48 BETA"
+    versao = '\U00002699' + " V2.49 BETA"
 
     # Este bloco localiza onde está o elevador na minha lista "elevador".
     for i in range(5):
@@ -163,6 +163,7 @@ if apresentar != "n" or "N":
                 break
 
     # Este bloco seleciona os andares onde o elevador foi chamado.
+    # Tambem separa em variaves diferentes os andares requisitados e andaresde decida, para mostrar na tela depois.
     destino_elevador = []
     destino_pessoas = []
     subidas = ""
@@ -187,7 +188,7 @@ if apresentar != "n" or "N":
             time.sleep(5)
     print("\n" * 50)
 
-    # esta função mostra o grafico atual dos andares
+    # esta função mostra o grafico atual dos andares, tbm recebe  algumas variaveis p/ que o painel de informações funcione.
     grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
     time.sleep(3)
     print("\n" * 40)
@@ -279,6 +280,7 @@ if apresentar != "n" or "N":
                     time.sleep(0.85)
 
                     # ESSA É A PARTE Q EU FALEI SOBRE SER RIGOROSO NA SUBIDA DE PESSOAS.
+                    # aqui uso duas variaveis de controle; "dc" e "dc2".
                     if localizacao_elevador == destino_elevador[i] and i % 2 == 0:
                         if dc > 0 or localizacao_elevador == 1 or dc2 == 1:
                             pessoas_no_elevador += 1
