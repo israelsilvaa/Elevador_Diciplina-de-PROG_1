@@ -5,8 +5,8 @@ import time
 # Variação de grafico para cada andar.
 def piso4x(n):
     print(
-        '_____ \n!   ! 4º Andar    (VOCÊ ESTÁ AQUI!)\n!' + str(
-            '\U0001F574' * n) + '! \n===== ')
+        '_____ \n#   # 4º Andar    (ELEVADOR!)\n#' + str(
+            '\U0001F574' * n) + '# \n===== ')
 
 
 def piso4():
@@ -15,7 +15,7 @@ def piso4():
 
 
 def piso3x(n):
-    print('_____\n!    ! 3º Andar    (VOCÊ ESTÁ AQUI!)\n!' + str('\U0001F574' * n) + '! \n===== ')
+    print('_____\n#    # 3º Andar    (ELEVADOR!)\n#' + str('\U0001F574' * n) + '# \n===== ')
 
 
 def piso3():
@@ -23,7 +23,7 @@ def piso3():
 
 
 def piso2x(n):
-    print('_____\n!    ! 2º Andar    (VOCÊ ESTÁ AQUI!)\n!' + str('\U0001F574' * n) + '! \n===== ')
+    print('_____\n#    # 2º Andar    (ELEVADOR!)\n#' + str('\U0001F574' * n) + '# \n===== ')
 
 
 def piso2():
@@ -31,7 +31,7 @@ def piso2():
 
 
 def piso1x(n):
-    print('_____\n!    ! 1º Andar    (VOCÊ ESTÁ AQUI!)\n!' + str('\U0001F574' * n) + '! \n===== ')
+    print('_____\n#    # 1º Andar    (ELEVADOR!)\n#' + str('\U0001F574' * n) + '# \n===== ')
 
 
 def piso1():
@@ -39,7 +39,7 @@ def piso1():
 
 
 def terreox(n):
-    print('_____\n!    ! Terreo    (VOCÊ ESTÁ AQUI!)\n!' + str('\U0001F574' * n) + '! \n=====                                    ## Express Elevadores ##' + str(v))
+    print('_____\n#    # Terreo    (ELEVADOR!)\n#' + str('\U0001F574' * n) + '# \n=====                                    ## Express Elevadores ##' + str(v))
 
 
 def terreo():
@@ -78,7 +78,7 @@ dc = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
 dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
 andar_vazio = 0
 aux = 0
-v = "V2.01 BETA"
+v = "V2.2 BETA"
 
 # Este bloco localiza onde está o elevador na minha lista "elevador".
 for i in range(5):
@@ -124,20 +124,20 @@ print("\n" * 40)
 uma_volta = "s"
 while uma_volta == "s":
     for i in range(len(dest_elevador)):
-
         #aqui é verificado se tem uma pessoa no andar q o elevador parou depois da 1º volta.
         if loc_e == dest_elevador[i] and i % 2 == 0:
             pessoas_no_elevador += 1
-            time.sleep(3)
-            if loc_e == dest_elevador[i] and i % 2 != 0:
-                pessoas_no_elevador -= 1
-            time.sleep(3)
+            time.sleep(5)
+        if loc_e == dest_elevador[i] and i % 2 != 0:
+            pessoas_no_elevador -= 1
+            time.sleep(5)
 
         # esse 2º while roda um bloco ate o elevador chegar ao destino dele, seja p/ cima ou baixo.
         while loc_e != dest_elevador[i]:
-
             # Essse if se trata de quando e elevador presisa subir.
             if loc_e < dest_elevador[i]:
+                if dest_elevador[i] == 5:
+                    break
                 if elevador[3] == 1:
                     elevador[3] = 0
                     elevador[4] = 1
@@ -170,17 +170,23 @@ while uma_volta == "s":
                 # contecendo, e + realista tbm!
                 # ==================================================
 
+                if loc_e == dest_elevador[i+1]:
+                    pessoas_no_elevador += 1
+                    dest_elevador[i+1] = 5
+                    time.sleep(5)
                 if loc_e == dest_elevador[i] and i % 2 == 0:
-                    time.sleep(3)
+                    time.sleep(5)
                     pessoas_no_elevador += 1
                 if loc_e == dest_elevador[i] and i % 2 != 0:
                     pessoas_no_elevador -= 1
-                    time.sleep(3)
+                    time.sleep(5)
                 print(" " * 50)
 
             # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
             elif loc_e > dest_elevador[i]:
                 dc2 = 1
+                if dest_elevador[i] == 5:
+                    break
                 if elevador[1] == 1:
                     elevador[1] = 0
                     elevador[0] = 1
@@ -213,13 +219,18 @@ while uma_volta == "s":
                 print("Localização atual do elevador:" + str(loc_e))
 
                 # ESSA É A PARTE Q EU FALEI SOBRE SER RIGOROSO NA SUBIDA DE PESSOAS.
+                if loc_e >= len(dest_elevador) - 1:
+                    if loc_e == dest_elevador[i+1]:
+                        pessoas_no_elevador += 1
+                        dest_elevador[i+1] = 5
+                        time.sleep(5)
                 if loc_e == dest_elevador[i] and i % 2 == 0:
                     if dc > 0 or loc_e == 1 or dc2 == 1:
                         pessoas_no_elevador += 1
-                        time.sleep(3)
+                        time.sleep(5)
                 if loc_e == dest_elevador[i] and i % 2 != 0:
                     pessoas_no_elevador -= 1
-                    time.sleep(3)
+                    time.sleep(5)
 
     grafico_atual(pessoas_no_elevador)
     if (len(dest_elevador)) == False:
