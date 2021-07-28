@@ -76,16 +76,16 @@ if apresentar != "n" or "N":
             " " * s2) + '| '  '\n=====' + str(" " * 36) + '+===============================+')
 
 
-    def piso2x(pessoas, a=0):
+    def piso2x(pessoas, subidaP,decidaP,a=0):
         if pessoas == 0:
             a = 3
         elif pessoas == 1:
             a = 2
-        print('#####\n!   ! 2º Andar    \n!' + str(icone * pessoas) + str(" " * a) + '! \n##### ')
+        print('#####\n!   ! 2º Andar '+str(" "*32)+"Solicitações: "+str(subidaP)+'\n!' + str(icone * pessoas) + str(" "*a) + '!'+str(" "*45)+"Destinos: " + str(decidaP) + '\n#####' + str(" "*37) + "pessoas no elevador atualmente: "+str(pessoas))
 
 
-    def piso2():
-        print('_____\n!   ! 2º Andar\n!   !\n=====')
+    def piso2(pessoas, subidaP, decidaP):
+        print('_____\n!   ! 2º Andar'+str(" "*32)+"Solicitações: "+str(subidaP)+'\n!   !'+str(" "*45)+"Destinos: "+str(decidaP)+'\n====='+str(" "*37)+"pessoas no elevador atualmente: "+str(pessoas))
 
 
     def piso1x(pessoas, a=0):
@@ -116,7 +116,7 @@ if apresentar != "n" or "N":
 
 
     # essa função monta os graficos andar por andar, e mostra na tela
-    def grafico_atual(pessoas, p):
+    def grafico_atual(pessoas, localizacao_elevador, subidas, descidas):
         if elevador[4] == 1:
             piso4x(pessoas)
         else:
@@ -126,9 +126,9 @@ if apresentar != "n" or "N":
         else:
             piso3(pessoas)
         if elevador[2] == 1:
-            piso2x(pessoas)
+            piso2x(pessoas, subidas, descidas)
         else:
-            piso2()
+            piso2(pessoas, subidas, descidas)
         if elevador[1] == 1:
             piso1x(pessoas)
         else:
@@ -146,7 +146,7 @@ if apresentar != "n" or "N":
     dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
     aux = 0  # usado p/ troca de valores quando a lista é invertida.
     icone = "\U0001F468"
-    versao = '\U00002699' + " V2.47 BETA"
+    versao = '\U00002699' + " V2.48 BETA"
 
     # Este bloco localiza onde está o elevador na minha lista "elevador".
     for i in range(5):
@@ -186,11 +186,9 @@ if apresentar != "n" or "N":
             print("." * i)
             time.sleep(5)
     print("\n" * 50)
+
     # esta função mostra o grafico atual dos andares
-    grafico_atual(pessoas_no_elevador, localizacao_elevador)
-    print("Andares solicitados:" + str(subidas))
-    print("Andares de descida:" + str(descidas))
-    print("Pessoas no elevador:" + str(pessoas_no_elevador))
+    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
     time.sleep(3)
     print("\n" * 40)
 
@@ -230,10 +228,7 @@ if apresentar != "n" or "N":
                         if elevador[ab] == 1:
                             localizacao_elevador = ab
                     # apos subir ele mostra o grafico dele.
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador)
-                    print("Andares solicitados:" + str(subidas))
-                    print("Andares de descida:" + str(descidas))
-                    print("Pessoas no elevador:" + str(pessoas_no_elevador))
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
                     time.sleep(0.85)
 
                     # Aqui se decide se alguem sobre ou desce.
@@ -242,19 +237,19 @@ if apresentar != "n" or "N":
                     if localizacao_elevador == destino_elevador[i] and i % 2 == 0:
                         time.sleep(3)
                         pessoas_no_elevador += 1
-                        print(" "*50)
-                        grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                        print("\n"*50)
+                        grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
                         time.sleep(3)
                     if localizacao_elevador == destino_elevador[i] and i % 2 != 0:
                         pessoas_no_elevador -= 1
                         time.sleep(3)
-                        grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                        grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
                         time.sleep(3)
-                    print(" " * 50)
+                    print("\n" * 50)
 
                 # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
                 elif localizacao_elevador > destino_elevador[i]:
-                    print(" " * 50)
+                    print("\n" * 50)
                     dc2 = 1
                     if elevador[1] == 1:
                         elevador[1] = 0
@@ -273,17 +268,14 @@ if apresentar != "n" or "N":
                     for cd in range(5):
                         if elevador[cd] == 1:
                             localizacao_elevador = cd
-
-                    grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                    print("\n" * 50)
+                    grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
 
                     # essa variavel "dc" , é p autorizar uma pessoa a subir
                     # Tive q deixar mais rigiroso , POIS AS VEZES DUAS PESSOAS SUBIAM DE UMA VEZ(oq nao pode acontecer)
                     if localizacao_elevador == destino_elevador[i] and i % 2 == 0:
                         dc = 1
 
-                    print("Andares solicitados:" + str(subidas))
-                    print("Andares de descida:" + str(descidas))
-                    print("Pessoas no elevador:" + str(pessoas_no_elevador))
                     time.sleep(0.85)
 
                     # ESSA É A PARTE Q EU FALEI SOBRE SER RIGOROSO NA SUBIDA DE PESSOAS.
@@ -291,22 +283,20 @@ if apresentar != "n" or "N":
                         if dc > 0 or localizacao_elevador == 1 or dc2 == 1:
                             pessoas_no_elevador += 1
                             time.sleep(3)
-                            grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                            grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
                             time.sleep(3)
                     if localizacao_elevador == destino_elevador[i] and i % 2 != 0:
                         pessoas_no_elevador -= 1
                         time.sleep(3)
-                        grafico_atual(pessoas_no_elevador, localizacao_elevador)
+                        grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
                         time.sleep(3)
 
-                print(" " * 50)
+                print("\n" * 50)
 
-        grafico_atual(pessoas_no_elevador, localizacao_elevador)
+        grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
         if not (len(destino_elevador)):
             print("Todos os andadres vazios no momento!")
-        print("Andares solicitados:" + str(subidas))
-        print("Andares de descida:" + str(descidas))
-        print("Pessoas no elevador:" + str(pessoas_no_elevador))
+
         uma_volta = str(input("Quer dar mais uma volta(s/n)?"))  # AQUI TERMINA A VOLTA
 
         # aqui tenho q zerar algumas variaveis p/ usar na proxima volta.
@@ -348,4 +338,4 @@ if apresentar != "n" or "N":
                     destino_elevador[i] = destino_elevador[i + 1]
                     destino_elevador[i + 1] = aux
 
-    print("Quantidade de pessoas no elevador:" + str(pessoas_no_elevador))
+print("Programa Finalizado!")
