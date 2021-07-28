@@ -78,7 +78,7 @@ dc = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
 dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
 andar_vazio = 0
 aux = 0
-v = "V2.00 BETA"
+v = "V2.01 BETA"
 
 # Este bloco localiza onde está o elevador na minha lista "elevador".
 for i in range(5):
@@ -128,6 +128,7 @@ while uma_volta == "s":
         #aqui é verificado se tem uma pessoa no andar q o elevador parou depois da 1º volta.
         if loc_e == dest_elevador[i] and i % 2 == 0:
             pessoas_no_elevador += 1
+            time.sleep(3)
             if loc_e == dest_elevador[i] and i % 2 != 0:
                 pessoas_no_elevador -= 1
             time.sleep(3)
@@ -174,6 +175,7 @@ while uma_volta == "s":
                     pessoas_no_elevador += 1
                 if loc_e == dest_elevador[i] and i % 2 != 0:
                     pessoas_no_elevador -= 1
+                    time.sleep(3)
                 print(" " * 50)
 
             # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
@@ -217,6 +219,7 @@ while uma_volta == "s":
                         time.sleep(3)
                 if loc_e == dest_elevador[i] and i % 2 != 0:
                     pessoas_no_elevador -= 1
+                    time.sleep(3)
 
     grafico_atual(pessoas_no_elevador)
     if (len(dest_elevador)) == False:
