@@ -146,7 +146,7 @@ if apresentar != "n" or "N":
     dc2 = 0  # estas são variaveis p/ controlar a entrada de pessoas no elevador
     aux = 0  # usado p/ troca de valores quando a lista é invertida.
     icone = "\U0001F468"
-    versao = '\U00002699' + " V2.49 BETA"
+    versao = '\U00002699' + " V2.50 BETA"
 
     # Este bloco localiza onde está o elevador na minha lista "elevador".
     for i in range(5):
@@ -251,7 +251,6 @@ if apresentar != "n" or "N":
                 # Aqui ja é SE CASO ele tenha q DESCER! o resto repete praticamente.
                 elif localizacao_elevador > destino_elevador[i]:
                     print("\n" * 50)
-                    dc2 = 1
                     if elevador[1] == 1:
                         elevador[1] = 0
                         elevador[0] = 1
@@ -282,7 +281,7 @@ if apresentar != "n" or "N":
                     # ESSA É A PARTE Q EU FALEI SOBRE SER RIGOROSO NA SUBIDA DE PESSOAS.
                     # aqui uso duas variaveis de controle; "dc" e "dc2".
                     if localizacao_elevador == destino_elevador[i] and i % 2 == 0:
-                        if dc > 0 or localizacao_elevador == 1 or dc2 == 1:
+                        if dc > 0 or localizacao_elevador == 1:
                             pessoas_no_elevador += 1
                             time.sleep(3)
                             grafico_atual(pessoas_no_elevador, localizacao_elevador, subidas, descidas)
