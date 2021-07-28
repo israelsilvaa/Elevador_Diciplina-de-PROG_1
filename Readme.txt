@@ -5,3 +5,4 @@ Dentro do app Pydroid 3, selecione o arquivo Python que deseja carregar, antes d
 dispositivo e aplicativo, pois do contrário a saída do projeto pode não ser correta.
 
 Computador (Windows 10): compatível com qualquer IDE(PyCharm, Netbeans, Eclipse) em versão do python mais recente possível.
+
