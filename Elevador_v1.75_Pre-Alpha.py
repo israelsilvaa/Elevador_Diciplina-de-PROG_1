@@ -101,8 +101,6 @@ for i in range(5):
         dest_elevador.append(i)
         dest_pessoas.append(destinos[i])
         pedidos += 1
-print(dest_pessoas)
-time.sleep(15)
 
 for i in range(1, 101, 3):
     print("Carregando " + str(i) + "%." + 73 * " " + v)
