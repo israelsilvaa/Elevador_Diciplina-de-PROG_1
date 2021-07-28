@@ -3,7 +3,7 @@ import time
 import os                   # usado p/ limpar tela no CMD.
 
 
-x = str(input("Iniciar apresentação(s/n):"))
+x = str(input("Pressione Enter p/ iniciar a apresentação!"))
 if x != "n" or "N":
     # Variação de grafico para cada andar.
     def piso4x(n,a=0):
@@ -130,7 +130,7 @@ if x != "n" or "N":
     dc = 0                        # estas são variaveis p/ controlar a entrada de pessoas no elevador
     dc2 = 0                       # estas são variaveis p/ controlar a entrada de pessoas no elevador
     aux = 0                       # usado p/ troca de valores quando a lista é invertida.
-    v = "V2.41 BETA"
+    v = "V2.42 BETA"
 
     # Este bloco localiza onde está o elevador na minha lista "elevador".
     for i in range(5):
@@ -166,8 +166,8 @@ if x != "n" or "N":
         print("." * i)
         time.sleep(5)
     print("\n" * 50)
-
-    grafico_atual(pessoas_no_elevador,loc_e)  # esta função mostra o grafico atual dos andares
+    # esta função mostra o grafico atual dos andares
+    grafico_atual(pessoas_no_elevador,loc_e)
     print("Andares solicitados:" + str(dest_elevador))
     print("Pessoas no elevador:" + str(pessoas_no_elevador))
     time.sleep(3)
@@ -225,6 +225,9 @@ if x != "n" or "N":
                     # contecendo, e + realista tbm!
                     # ==================================================
 
+                    # Aqui se decide se alguem sobre ou desce.
+                    # Lembrando q na lista de comando, os indices pares são destinos de subida
+                    # e os impares são destinos de descida.
                     if loc_e == dest_elevador[i] and i % 2 == 0:
                         time.sleep(3)
                         pessoas_no_elevador += 1
@@ -312,11 +315,12 @@ if x != "n" or "N":
                 dest_elevador.append(destinos[i])
 
         if loc_e == 4:
-            #comando abaixo inverte a lista de comandos de paradas
+            #comando abaixo inverte a lista de comandos de paradas, p/ que ele nao começe a pegar pessoas do andar mais baixo.
             dest_elevador = dest_elevador[::-1]
 
             #Comando abaixo troca de lugar destino das pessoas e destinos do elevador(JA QUE O COMANDO ACIMA OD INVERTEU
             # ANTãO AGPRA ESTOU AGEITANDO
+            # isso prq , indices pares da lista, se referem a subida de pessoas e indices impares a descida de pessoas
             for i in range(len(dest_elevador)):
                 if i % 2 == 0:
                     aux = dest_elevador[i]
